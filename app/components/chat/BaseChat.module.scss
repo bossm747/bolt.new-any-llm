@@ -1,13 +1,23 @@
 .BaseChat {
-  &[data-chat-visible='false'] {
-    --workbench-inner-width: 100%;
-    --workbench-left: 0;
+  /* Mobile-first base styles */
+  --at-apply: bolt-ease-cubic-bezier;
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  will-change: transform, opacity;
+  
+  /* iOS-specific optimizations */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Safe area padding for iOS devices */
+  padding-top: var(--safe-area-inset-top);
+  padding-bottom: var(--safe-area-inset-bottom);
+  padding-left: var(--safe-area-inset-left);
+  padding-right: var(--safe-area-inset-right);
 
+  &[data-chat-visible='false'] {
     .Chat {
-      --at-apply: bolt-ease-cubic-bezier;
-      transition-property: transform, opacity;
-      transition-duration: 0.3s;
-      will-change: transform, opacity;
       transform: translateX(-50%);
       opacity: 0;
     }
@@ -16,4 +26,56 @@
 
 .Chat {
   opacity: 1;
+  
+  /* Mobile-first styles */
+  width: 100%;
+  min-height: 100%;
+  padding: 1rem;
+  
+  /* Touch-friendly scrolling */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Ensure buttons and interactive elements are touch-friendly */
+  button, 
+  [role="button"],
+  select,
+  textarea {
+    min-height: var(--tap-target-size);
+    min-width: var(--tap-target-size);
+    padding: 0.75rem;
+    touch-action: manipulation;
+  }
+  
+  /* Prevent text selection while scrolling on iOS */
+  -webkit-user-select: none;
+  user-select: none;
+  
+  /* Re-enable text selection for specific elements */
+  textarea,
+  [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  
+  /* Optimize font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Prevent iOS double-tap to zoom */
+  touch-action: manipulation;
+  
+  /* Desktop styles */
+  @media (min-width: 768px) {
+    padding: 2rem;
+    
+    button, 
+    [role="button"],
+    select,
+    textarea {
+      min-height: initial;
+      min-width: initial;
+      padding: initial;
+    }
+  }
 }

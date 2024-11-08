@@ -7,8 +7,112 @@
 @import './components/editor.scss';
 @import './components/toast.scss';
 
+/* Base styles */
 html,
 body {
   height: 100%;
   width: 100%;
+  /* Mobile optimizations */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  /* Use custom vh variable for iOS */
+  height: calc(var(--vh, 1vh) * 100);
+  /* Prevent overscroll bounce */
+  overscroll-behavior: none;
+  /* Optimize font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile-first interactive elements */
+button,
+[role="button"],
+select,
+input,
+textarea {
+  /* Ensure minimum touch target size */
+  min-height: var(--tap-target-size, 44px);
+  min-width: var(--tap-target-size, 44px);
+  /* Prevent double-tap zoom */
+  touch-action: manipulation;
+  
+  /* Reset for desktop */
+  @media (min-width: 768px) {
+    min-height: unset;
+    min-width: unset;
+  }
+}
+
+/* iOS safe area support */
+.safe-area-padding {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Prevent text selection while scrolling */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable text selection for inputs */
+input,
+textarea,
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Smooth scrolling for iOS */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+/* Mobile keyboard adjustments */
+@media screen and (max-width: 767px) {
+  .keyboard-open {
+    /* Adjust layout when keyboard is open */
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+  }
+}
+
+/* Mobile-first media queries */
+@media screen and (max-width: 767px) {
+  /* Adjust font sizes for better readability on mobile */
+  html {
+    font-size: 16px;
+  }
+  
+  /* Stack elements vertically on mobile */
+  .mobile-stack {
+    flex-direction: column;
+  }
+  
+  /* Full width containers on mobile */
+  .mobile-full-width {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Hide elements on mobile */
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+/* Tablet and desktop styles */
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+  
+  .desktop-hidden {
+    display: none;
+  }
 }
