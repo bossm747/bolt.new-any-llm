@@ -1,6 +1,6 @@
-# Contributing to Bolt.new Fork
+# Contributing to Pa8ee Fork
 
-First off, thank you for considering contributing to Bolt.new! This fork aims to expand the capabilities of the original project by integrating multiple LLM providers and enhancing functionality. Every contribution helps make Bolt.new a better tool for developers worldwide.
+First off, thank you for considering contributing to Pa8ee! This fork aims to expand the capabilities of the original project by integrating multiple LLM providers and enhancing functionality. Every contribution helps make Pa8ee a better tool for developers worldwide.
 
 ## 📋 Table of Contents
 - [Code of Conduct](#code-of-conduct)
@@ -59,7 +59,7 @@ We're looking for dedicated contributors to help maintain and grow this project.
 ### 🔄 Initial Setup
 1. Clone the repository:
 ```bash
-git clone https://github.com/coleam00/bolt.new-any-llm.git
+git clone https://github.com/coleam00/Pa8ee-any-llm.git
 ```
 
 2. Install dependencies:
@@ -131,10 +131,10 @@ You can use Docker's target feature to specify the build environment:
 
 ```bash
 # Development build
-docker build . --target bolt-ai-development
+docker build . --target Pa8ee-development
 
 # Production build
-docker build . --target bolt-ai-production
+docker build . --target Pa8ee-production
 ```
 
 ### 3. Docker Compose with Profiles
@@ -155,10 +155,10 @@ After building using any of the methods above, run the container with:
 
 ```bash
 # Development
-docker run -p 5173:5173 --env-file .env.local bolt-ai:development
+docker run -p 5173:5173 --env-file .env.local Pa8ee:development
 
 # Production
-docker run -p 5173:5173 --env-file .env.local bolt-ai:production
+docker run -p 5173:5173 --env-file .env.local Pa8ee:production
 ```
 
 ## Deployment with Coolify
